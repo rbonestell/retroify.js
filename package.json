@@ -36,7 +36,7 @@
   "author": "Bobby Bonestell <rbonestell@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "minify": "uglifyjs src/retroify.js --compress --warn --output out/retroify.min.js"
+    "minify": "uglifyjs src/retroify.js --compress --warn --comments --output out/retroify.min.js"
   },
   "devDependencies": {
     "uglify-js": "^3.19.3"
