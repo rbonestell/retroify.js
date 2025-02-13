@@ -32,7 +32,13 @@
     "ui"
   ],
   "private": false,
-  "main": "retroify.js",
+  "main": "src/retroify.js",
   "author": "Bobby Bonestell <rbonestell@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "minify": "uglifyjs src/retroify.js --compress --warn --output out/retroify.min.js"
+  },
+  "devDependencies": {
+    "uglify-js": "^3.19.3"
+  }
 }

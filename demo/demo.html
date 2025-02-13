@@ -14,11 +14,9 @@
     <div class="container">
         <h1>Retroify.js Demo</h1>
         <p>This demo shows how Retroify.js works with various HTML elements and Bootstrap components.</p>
+        <button onclick="retroify.toggle()" class="btn btn-primary" aria-pressed="false">Toggle Retroify</button>
+        <button onclick="retroify.toggleScanlines()" class="btn btn-secondary" aria-pressed="false">Toggle Scanlines</button>
         
-            <button onclick="retroify.toggle()" class="btn btn-primary" aria-pressed="false">Toggle Retroify</button>
-            <button onclick="retroify.toggleScanlines()" class="btn btn-secondary" aria-pressed="false">Toggle Just Scanlines</button>
-        
-
         <div class="demo-section">
             <h2>Regular Buttons</h2>
             <button>Button</button>
@@ -50,7 +48,7 @@
         </div>
 
         <div class="demo-section">
-            <h2>Cards</h2>
+            <h2>Bootstrap Cards</h2>
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">
@@ -111,7 +109,7 @@
         </div>
     </div>
 
-    <script src="retroify.js"></script>
+    <script src="../src/retroify.js"></script>
     <script>
         // Event listeners
         const events = ['applied', 'removed'];
