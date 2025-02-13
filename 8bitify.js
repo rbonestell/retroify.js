@@ -103,11 +103,14 @@
 
         .eight-bit h1,
         .eight-bit h2,
-        .eight-bit h3,
+        .eight-bit h3 {
+            text-shadow: 2px 2px 0 rgb(var(--eight-bit-shadow-color, 0 0 0) / var(--eight-bit-shadow-opacity, 0.3));
+        }
+
         .eight-bit h4,
         .eight-bit h5,
         .eight-bit h6 {
-            text-shadow: 4px 4px 0 rgb(var(--eight-bit-shadow-color, 0 0 0) / var(--eight-bit-shadow-opacity, 0.3));
+            text-shadow: 1px 1px 0 rgb(var(--eight-bit-shadow-color, 0 0 0) / var(--eight-bit-shadow-opacity, 0.3));
         }
 
         .eight-bit p {
