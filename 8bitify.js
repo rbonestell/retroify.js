@@ -57,6 +57,9 @@
         }
 
         /* Hover states for buttons */
+        .eight-bit button:hover,
+        .eight-bit input[type="button"]:hover,
+        .eight-bit input[type="submit"]:hover,
         .eight-bit .btn:hover {
             top: -2px !important;
             left: -2px !important;
@@ -65,35 +68,14 @@
         }
 
         /* Active states for buttons */
+        .eight-bit button:active,
+        .eight-bit input[type="button"]:active,
+        .eight-bit input[type="submit"]:active,
         .eight-bit .btn:active {
             top: 4px !important;
             left: 4px !important;
             box-shadow: 0px 0px 0 !important;
         }
-
-        // /* Regular button styles (non-Bootstrap) */
-        // .eight-bit button:not(.btn),
-        // .eight-bit input[type="button"]:not(.btn),
-        // .eight-bit input[type="submit"]:not(.btn) {
-        //     box-shadow: 4px 4px 0 currentColor !important;
-        //     border: 2px solid currentColor !important;
-        // }
-
-        // .eight-bit button:not(.btn):hover,
-        // .eight-bit input[type="button"]:not(.btn):hover,
-        // .eight-bit input[type="submit"]:not(.btn):hover {
-        //     box-shadow: 6px 6px 0 currentColor !important;
-        //     top: -2px !important;
-        //     left: -2px !important;
-        // }
-
-        // .eight-bit button:not(.btn):active,
-        // .eight-bit input[type="button"]:not(.btn):active,
-        // .eight-bit input[type="submit"]:not(.btn):active {
-        //     box-shadow: 0 0 0 transparent !important;
-        //     top: 4px !important;
-        //     left: 4px !important;
-        // }
 
         .eight-bit h1,
         .eight-bit h2,
