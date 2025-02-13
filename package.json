@@ -1,0 +1,11 @@
+{
+  "name": "8bitify",
+  "version": "1.0.0",
+  "description": "Automatically apply an 8-bit filter to your web page",
+  "main": "8bitify.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bobby Bonestell <rbonestell@gmail.com>",
+  "license": "MIT"
+}

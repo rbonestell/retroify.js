@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8bitify Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container { padding: 2rem; }
+        .demo-section { margin: 2rem 0; padding: 1rem; border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>8bitify Demo</h1>
+        <p>This demo shows how 8bitify works with various HTML elements and Bootstrap components.</p>
+        
+        <div class="demo-section">
+            <h2>Controls</h2>
+            <button onclick="eightBitify.toggle()" class="btn btn-primary" aria-pressed="false">Toggle 8bit Style</button>
+            <button onclick="eightBitify.toggleScanlines()" class="btn btn-secondary" aria-pressed="false">Toggle Scanlines</button>
+        </div>
+
+        <div class="demo-section">
+            <h2>Buttons</h2>
+            <button class="btn btn-primary">Primary Button</button>
+            <button class="btn btn-secondary">Secondary Button</button>
+            <button class="btn btn-success">Success Button</button>
+        </div>
+
+        <div class="demo-section">
+            <h2>Form Elements</h2>
+            <div class="mb-3">
+                <label for="textInput" class="form-label">Text Input</label>
+                <input type="text" class="form-control" id="textInput" placeholder="Enter text">
+            </div>
+            <div class="mb-3">
+                <label for="selectInput" class="form-label">Select Input</label>
+                <select class="form-select" id="selectInput">
+                    <option>Option 1</option>
+                    <option>Option 2</option>
+                    <option>Option 3</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>Cards</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Card Title</h5>
+                            <p class="card-text">Some quick example text for the card.</p>
+                            <button class="btn btn-primary">Go somewhere</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>Tables</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Header 1</th>
+                        <th>Header 2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Cell 1</td>
+                        <td>Cell 2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="demo-section">
+            <h2>Code</h2>
+            <pre><code>function hello() {
+    console.log("Hello, 8bit world!");
+}</code></pre>
+        </div>
+
+        <div class="demo-section">
+            <h2>Accessibility Notes</h2>
+            <ul>
+                <li>Press Start 2P font loading is monitored and falls back gracefully</li>
+                <li>Animations respect user's motion preferences</li>
+                <li>Screen reader announcements for state changes</li>
+                <li>ARIA attributes for interactive elements</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="8bitify.js"></script>
+    <script>
+        // Event listeners
+        const events = ['applied', 'removed'];
+        events.forEach(event => {
+            window.addEventListener(`eightbitify:${event}`, (e) => {
+                console.log(`8bit style ${event} to:`, e.detail.target);
+            });
+        });
+    </script>
+</body>
+</html>
