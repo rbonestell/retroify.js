@@ -1,6 +1,6 @@
 /**
- * 8bitify - A library to apply retro 8-bit styling to web pages
- * @version 1.0.0
+ * Retroify - A library to apply retro 8-bit styling to web pages
+ * @version 0.1.0
  */
 (function(window) {
     'use strict';
@@ -18,18 +18,18 @@
     };
 
     const STYLES = `
-        .eight-bit {
+        .retroify {
             ${features.imageRendering}: pixelated;
             ${features.imageRendering}: -moz-crisp-edges;
             ${features.imageRendering}: crisp-edges;
             font-family: 'Press Start 2P' !important;
             font-size: 0.75em;
-            --eight-bit-shadow-opacity: 0.3;
+            --retroify-shadow-opacity: 0.3;
         }
 
-        /* Reset FontAwesome icons to prevent eight-bit styling from affecting them */
-        .eight-bit i.fa,
-        .eight-bit i.fab {
+        /* Reset FontAwesome icons to prevent retroify styling from affecting them */
+        .retroify i.fa,
+        .retroify i.fab {
             font-size: 2em !important;
             transform: initial !important;
             text-shadow: initial !important;
@@ -37,15 +37,15 @@
             filter: initial !important;
         }
 
-        .eight-bit h1 { font-size: 2.5em; }
-        .eight-bit h2 { font-size: 1.25em; }
-        .eight-bit h3 { font-size: 1em; }
-        .eight-bit h4 { font-size: 0.8em; }
-        .eight-bit h5 { font-size: 0.6em; }
-        .eight-bit h6 { font-size: 0.4em; }
+        .retroify h1 { font-size: 2.5em; }
+        .retroify h2 { font-size: 1.25em; }
+        .retroify h3 { font-size: 1em; }
+        .retroify h4 { font-size: 0.8em; }
+        .retroify h5 { font-size: 0.6em; }
+        .retroify h6 { font-size: 0.4em; }
 
-        .eight-bit img {
-            box-shadow: 8px 8px 0 rgb(var(--eight-bit-shadow-color, 0 0 0) / var(--eight-bit-shadow-opacity, 0.3));
+        .retroify img {
+            box-shadow: 8px 8px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
             image-rendering: pixelated;
             filter: contrast(150%) brightness(110%);
             border-radius: 0 !important;
@@ -56,11 +56,11 @@
         }
 
         /* Base button styles */
-        .eight-bit a,
-        .eight-bit button,
-        .eight-bit input[type="button"],
-        .eight-bit input[type="submit"],
-        .eight-bit .btn {
+        .retroify a,
+        .retroify button,
+        .retroify input[type="button"],
+        .retroify input[type="submit"],
+        .retroify .btn {
             position: relative !important;
             top: 0 !important;
             left: 0 !important;
@@ -79,11 +79,11 @@
         }
 
         /* Hover states for buttons */
-        .eight-bit a:hover,
-        .eight-bit button:hover,
-        .eight-bit input[type="button"]:hover,
-        .eight-bit input[type="submit"]:hover,
-        .eight-bit .btn:hover {
+        .retroify a:hover,
+        .retroify button:hover,
+        .retroify input[type="button"]:hover,
+        .retroify input[type="submit"]:hover,
+        .retroify .btn:hover {
             top: -2px !important;
             left: -2px !important;
             cursor: pointer !important;
@@ -91,86 +91,84 @@
         }
 
         /* Active states for buttons */
-        .eight-bit a:active,
-        .eight-bit button:active,
-        .eight-bit input[type="button"]:active,
-        .eight-bit input[type="submit"]:active,
-        .eight-bit .btn:active {
+        .retroify a:active,
+        .retroify button:active,
+        .retroify input[type="button"]:active,
+        .retroify input[type="submit"]:active,
+        .retroify .btn:active {
             top: 4px !important;
             left: 4px !important;
             box-shadow: 0px 0px 0 !important;
         }
 
-        .eight-bit h1,
-        .eight-bit h2,
-        .eight-bit h3 {
-            text-shadow: 2px 2px 0 rgb(var(--eight-bit-shadow-color, 0 0 0) / var(--eight-bit-shadow-opacity, 0.3));
+        .retroify h1,
+        .retroify h2,
+        .retroify h3 {
+            text-shadow: 2px 2px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
         }
 
-        .eight-bit h4,
-        .eight-bit h5,
-        .eight-bit h6 {
-            text-shadow: 1px 1px 0 rgb(var(--eight-bit-shadow-color, 0 0 0) / var(--eight-bit-shadow-opacity, 0.3));
+        .retroify h4,
+        .retroify h5,
+        .retroify h6 {
+            text-shadow: 1px 1px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
         }
 
-        .eight-bit p {
+        .retroify p {
             line-height: 1.6;
             margin-bottom: 1.5em;
         }
 
-        .eight-bit input[type="text"],
-        .eight-bit input[type="email"],
-        .eight-bit input[type="password"],
-        .eight-bit textarea {
+        .retroify input[type="text"],
+        .retroify input[type="email"],
+        .retroify input[type="password"],
+        .retroify textarea {
             border: 2px solid currentColor !important;
             border-radius: 0 !important;
-            box-shadow: 4px 4px 0 rgb(var(--eight-bit-shadow-color, 0 0 0) / var(--eight-bit-shadow-opacity, 0.3));
+            box-shadow: 4px 4px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
             padding: 8px !important;
         }
 
-        .eight-bit select {
+        .retroify select {
             border: 2px solid currentColor !important;
             border-radius: 0 !important;
-            box-shadow: 4px 4px 0 rgb(var(--eight-bit-shadow-color, 0 0 0) / var(--eight-bit-shadow-opacity, 0.3));
+            box-shadow: 4px 4px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
             padding: 8px !important;
         }
 
-        .eight-bit .card,
-        .eight-bit .alert,
-        .eight-bit .modal-content {
+        .retroify .card,
+        .retroify .alert,
+        .retroify .modal-content {
             border-radius: 0 !important;
-            box-shadow: 8px 8px 0 rgb(var(--eight-bit-shadow-color, 0 0 0) / var(--eight-bit-shadow-opacity, 0.3));
+            box-shadow: 8px 8px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
             border: 2px solid currentColor !important;
         }
 
-        .eight-bit hr {
+        .retroify hr {
             border: none;
             border-bottom: 4px dashed currentColor;
             margin: 2em 0;
         }
 
-        .eight-bit table {
+        .retroify table {
             border-collapse: separate;
             border-spacing: 0;
             border: 2px solid currentColor;
-            box-shadow: 4px 4px 0 rgb(var(--eight-bit-shadow-color, 0 0 0) / var(--eight-bit-shadow-opacity, 0.3));
+            box-shadow: 4px 4px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
         }
 
-        .eight-bit th,
-        .eight-bit td {
+        .retroify th ,
+        .retroify td {
             border: 1px solid currentColor;
             padding: 8px;
         }
 
-        .eight-bit code,
-        .eight-bit pre {
-            // padding: 4px 8px;
+        .retroify code,
+        .retroify pre {
             font-family: 'Press Start 2P', monospace;
             font-size: 0.8em;
-            // box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5);
         }
 
-        .eight-bit-scanlines::before {
+        .retroify-scanlines::before {
             content: "";
             position: fixed;
             top: 0;
@@ -179,69 +177,65 @@
             height: 100%;
             background: repeating-linear-gradient(
                 0deg,
-                rgb(var(--eight-bit-shadow-color, 0 0 0) / 0.03),
-                rgb(var(--eight-bit-shadow-color, 0 0 0) / 0.03) 2px,
+                rgb(var(--retroify-shadow-color, 0 0 0) / 0.03),
+                rgb(var(--retroify-shadow-color, 0 0 0) / 0.03) 2px,
                 transparent 3px,
                 transparent 5px
             );
             pointer-events: none;
             z-index: 9999;
-            animation: eight-bit-scanline-scroll 8s linear infinite;
+            animation: retroify-scanline-scroll 8s linear infinite;
         }
 
-        @keyframes eight-bit-scanline-scroll {
+        @keyframes retroify-scanline-scroll {
             0% { transform: translateY(0); }
             100% { transform: translateY(50px); }
         }
 
-        @keyframes eight-bit-float {
+        @keyframes retroify-float {
             0% { transform: translateY(0); }
             50% { transform: translateY(-4px); }
             100% { transform: translateY(0); }
         }
 
-        .eight-bit .floating {
-            animation: eight-bit-float 2s ease-in-out infinite;
+        .retroify .floating {
+            animation: retroify-float 2s ease-in-out infinite;
         }
 
-        .eight-bit .blink {
-            animation: eight-bit-blink 1s step-end infinite;
+        .retroify .blink {
+            animation: retroify-blink 1s step-end infinite;
         }
 
-        @keyframes eight-bit-blink {
+        @keyframes retroify-blink {
             50% { opacity: 0; }
         }
 
         /* Reduced Motion */
         @media (prefers-reduced-motion: reduce) {
-            .eight-bit .floating {
+            .retroify .floating {
                 animation: none !important;
             }
             
-            .eight-bit button,
-            .eight-bit .btn {
+            .retroify button,
+            .retroify .btn {
                 transition: none !important;
             }
         }
 
         /* Print styles */
         @media print {
-            .eight-bit-scanlines::before {
+            .retroify-scanlines::before {
                 display: none !important;
-            }
-            
-            .eight-bit {
-                font-family: system-ui, -apple-system, sans-serif !important;
             }
         }
     `;
 
-    const EightBitify = {
-        version: '1.0.0',
+    const Retroify = {
+        version: '0.1.0',
         isApplied: false,
         
         /**
-         * Check if the environment supports 8bitify
+         * Check if the environment supports Retroify
          * @returns {boolean}
          */
         isSupported: function() {
@@ -259,7 +253,7 @@
          */
         _init: function() {
             if (!this.isSupported()) {
-                console.warn('8bitify: Browser environment not supported');
+                console.warn('Retroify: Browser environment not supported');
                 return false;
             }
             return true;
@@ -279,18 +273,18 @@
             }
 
             // Add styles
-            if (!document.querySelector('style[data-eight-bitify]')) {
+            if (!document.querySelector('style[data-retroify]')) {
                 const styleSheet = document.createElement('style');
-                styleSheet.setAttribute('data-eight-bitify', '');
+                styleSheet.setAttribute('data-retroify', '');
                 styleSheet.textContent = STYLES;
                 document.head.appendChild(styleSheet);
             }
         },
 
         /**
-         * Apply 8-bit styling to the page or specific element
+         * Apply Retro 8-bit styling to the page or specific element
          * @param {HTMLElement|string} [target=document.body] - Optional target element or selector to apply styles to
-         * @returns {EightBitify}
+         * @returns {Retroify}
          * @throws {Error} If the target is invalid or not found
          */
         apply: function(target) {
@@ -319,7 +313,7 @@
                     };
                 }
 
-                // Add eight-bit class to appropriate elements
+                // Add retroify class to appropriate elements
                 const selectors = [
                     'img',
                     'button',
@@ -356,27 +350,25 @@
 
                     elements.forEach(element => {
                         if (element && element instanceof HTMLElement) {
-                            element.classList.add('eight-bit');
+                            element.classList.add('retroify');
                             // Add ARIA attributes
                             if (element.tagName.toLowerCase() === 'button') {
                                 element.setAttribute('aria-pressed', 'false');
                             }
                         }
                     });
-
-                    this.isApplied = true;
                     
                     // Dispatch custom event
-                    window.dispatchEvent(new CustomEvent('eightbitify:applied', {
+                    window.dispatchEvent(new CustomEvent('retroify:applied', {
                         detail: { target: rootElement }
                     }));
                 } catch (e) {
-                    console.error('8bitify: Error applying styles:', e);
+                    console.error('Retroify: Error applying styles:', e);
                 }
 
                 return this;
             } catch (e) {
-                console.error('8bitify:', e.message);
+                console.error('Retroify:', e.message);
                 return this;
             }
         },
@@ -384,7 +376,7 @@
         /**
          * Remove 8-bit styling from the page or specific element
          * @param {HTMLElement|string} [target=document.body] - Optional target element or selector to remove styles from
-         * @returns {EightBitify}
+         * @returns {Retroify}
          */
         remove: function(target) {
             if (!this._init()) return this;
@@ -404,26 +396,24 @@
                     delete rootElement._originalStyles;
                 }
 
-                rootElement.classList.remove('eight-bit');
+                rootElement.classList.remove('retroify');
                 
-                rootElement.querySelectorAll('.eight-bit').forEach(element => {
-                    element.classList.remove('eight-bit');
+                rootElement.querySelectorAll('.retroify').forEach(element => {
+                    element.classList.remove('retroify');
                     if (element._originalStyles) {
                         Object.assign(element.style, element._originalStyles);
                         delete element._originalStyles;
                     }
                 });
 
-                this.isApplied = false;
-
                 // Dispatch custom event
-                window.dispatchEvent(new CustomEvent('eightbitify:removed', {
+                window.dispatchEvent(new CustomEvent('retroify:removed', {
                     detail: { target: rootElement }
                 }));
 
                 return this;
             } catch (e) {
-                console.error('8bitify:', e.message);
+                console.error('Retroify:', e.message);
                 return this;
             }
         },
@@ -432,7 +422,7 @@
          * Toggle 8-bit styling on the entire page
          */
         toggle: function() {
-            if (document.body.classList.contains('eight-bit')) {
+            if (document.body.classList.contains('retroify')) {
                 this.remove(document.body);
             } else {
                 this.apply(document.body);
@@ -449,9 +439,9 @@
          */
         toggleScanlines: function(enable) {            
             if (typeof enable === 'boolean') {
-                enable ? document.body.classList.add('eight-bit-scanlines') : document.body.classList.remove('eight-bit-scanlines');
+                enable ? document.body.classList.add('retroify-scanlines') : document.body.classList.remove('retroify-scanlines');
             } else {
-                document.body.classList.toggle('eight-bit-scanlines');
+                document.body.classList.toggle('retroify-scanlines');
             }
             
             return this;
@@ -468,7 +458,7 @@
             this.toggleScanlines(false);
             
             // Remove injected stylesheet
-            const style = document.querySelector('style[data-eight-bitify]');
+            const style = document.querySelector('style[data-retroify]');
             if (style) {
                 style.remove();
             }
@@ -486,7 +476,7 @@
                 document.querySelector(selector);
                 return true;
             } catch (e) {
-                console.warn('8bitify: Invalid selector syntax');
+                console.warn('Retroify: Invalid selector syntax');
                 return false;
             }
         }
@@ -495,21 +485,21 @@
     // Handle script loading error for the font
     document.addEventListener('error', function(e) {
         if (e.target.tagName === 'LINK' && e.target.href.includes('Press+Start+2P')) {
-            console.warn('8bitify: Failed to load Press Start 2P font. Falling back to system fonts.');
+            console.warn('Retroify: Failed to load Press Start 2P font. Falling back to system fonts.');
         }
     }, true);
 
     // Cleanup on page unload
     window.addEventListener('unload', () => {
-        if (window.eightBitify) {
-            window.eightBitify.destroy();
+        if (window.retroify) {
+            window.retroify.destroy();
         }
     });
 
     // Export to window with proper safeguards
-    if (typeof window.eightBitify === 'undefined') {
-        Object.defineProperty(window, 'eightBitify', {
-            value: Object.freeze(EightBitify),
+    if (typeof window.retroify === 'undefined') {
+        Object.defineProperty(window, 'retroify', {
+            value: Object.freeze(Retroify),
             writable: false,
             configurable: false
         });

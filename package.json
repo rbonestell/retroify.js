@@ -1,8 +1,8 @@
 {
-  "name": "8bitify",
-  "version": "1.0.0",
+  "name": "retroify.js",
+  "version": "0.1.0",
   "description": "Automatically apply an 8-bit filter to your web page",
-  "main": "8bitify.js",
+  "main": "retroify.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

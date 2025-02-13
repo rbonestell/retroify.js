@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>8bitify Demo</title>
+    <title>Retroify.js Demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .container { padding: 2rem; }
@@ -12,14 +12,12 @@
 </head>
 <body>
     <div class="container">
-        <h1>8bitify Demo</h1>
-        <p>This demo shows how 8bitify works with various HTML elements and Bootstrap components.</p>
+        <h1>Retroify.js Demo</h1>
+        <p>This demo shows how Retroify.js works with various HTML elements and Bootstrap components.</p>
         
-        <div class="demo-section">
-            <h2>Controls</h2>
-            <button onclick="eightBitify.toggle()" class="btn btn-primary" aria-pressed="false">Toggle 8bit Style</button>
-            <button onclick="eightBitify.toggleScanlines()" class="btn btn-secondary" aria-pressed="false">Toggle Scanlines</button>
-        </div>
+            <button onclick="retroify.toggle()" class="btn btn-primary" aria-pressed="false">Toggle Retroify</button>
+            <button onclick="retroify.toggleScanlines()" class="btn btn-secondary" aria-pressed="false">Toggle Just Scanlines</button>
+        
 
         <div class="demo-section">
             <h2>Regular Buttons</h2>
@@ -100,15 +98,26 @@
                 <li>ARIA attributes for interactive elements</li>
             </ul>
         </div>
+
+        <div class="demo-section">
+            <h2>Links</h2>
+            <p>
+                Popular frameworks and libraries: 
+                <a href="https://getbootstrap.com" target="_blank">Bootstrap</a>, 
+                <a href="https://tailwindcss.com" target="_blank">Tailwind CSS</a>, 
+                <a href="https://fontawesome.com" target="_blank">Font Awesome</a>
+            </p>
+            <p>Try hovering over these links to see the 8-bit hover effect!</p>
+        </div>
     </div>
 
-    <script src="8bitify.js"></script>
+    <script src="retroify.js"></script>
     <script>
         // Event listeners
         const events = ['applied', 'removed'];
         events.forEach(event => {
             window.addEventListener(`eightbitify:${event}`, (e) => {
-                console.log(`8bit style ${event} to:`, e.detail.target);
+                console.log(`Retroify.js ${event} to:`, e.detail.target);
             });
         });
     </script>
