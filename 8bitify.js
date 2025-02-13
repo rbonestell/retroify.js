@@ -170,13 +170,19 @@
             height: 100%;
             background: repeating-linear-gradient(
                 0deg,
-                rgb(var(--eight-bit-shadow-color, 0 0 0) / 0.1),
-                rgb(var(--eight-bit-shadow-color, 0 0 0) / 0.1) 1px,
-                transparent 1px,
-                transparent 2px
+                rgb(var(--eight-bit-shadow-color, 0 0 0) / 0.03),
+                rgb(var(--eight-bit-shadow-color, 0 0 0) / 0.03) 2px,
+                transparent 3px,
+                transparent 5px
             );
             pointer-events: none;
             z-index: 9999;
+            animation: eight-bit-scanline-scroll 8s linear infinite;
+        }
+
+        @keyframes eight-bit-scanline-scroll {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50px); }
         }
 
         @keyframes eight-bit-float {
@@ -224,7 +230,6 @@
     const EightBitify = {
         version: '1.0.0',
         isApplied: false,
-        elements: new WeakSet(), // Track enhanced elements for cleanup
         
         /**
          * Check if the environment supports 8bitify
@@ -343,8 +348,6 @@
                     elements.forEach(element => {
                         if (element && element instanceof HTMLElement) {
                             element.classList.add('eight-bit');
-                            // Track enhanced elements
-                            this.elements.add(element);
                             // Add ARIA attributes
                             if (element.tagName.toLowerCase() === 'button') {
                                 element.setAttribute('aria-pressed', 'false');
@@ -386,10 +389,6 @@
                     throw new Error('Target element not found');
                 }
 
-                if (rootElement === document.body) {
-                    this.toggleScanlines(false);
-                }
-
                 // Restore original styles if they exist
                 if (rootElement._originalStyles) {
                     Object.assign(rootElement.style, rootElement._originalStyles);
@@ -397,7 +396,6 @@
                 }
 
                 rootElement.classList.remove('eight-bit');
-                rootElement.classList.remove('eight-bit-scanlines');
                 
                 rootElement.querySelectorAll('.eight-bit').forEach(element => {
                     element.classList.remove('eight-bit');
@@ -422,33 +420,16 @@
         },
 
         /**
-         * Toggle 8-bit styling on the page or specific element
-         * @param {HTMLElement|string} [target=document.body] - Optional target element or selector to toggle styles on
+         * Toggle 8-bit styling on the entire page
          */
-        toggle: function(target) {
-            if (typeof target === 'string' && !this._validateSelector(target)) {
-                return this;
-            }
-
-            const rootElement = target 
-                ? (typeof target === 'string' ? document.querySelector(target) : target)
-                : document.body;
-
-            if (target && !(typeof target === 'string' || target instanceof HTMLElement)) {
-                console.warn('8bitify: Invalid target type. Expected HTMLElement or string selector');
-                return this;
-            }
-
-            if (!rootElement) {
-                console.warn('8bitify: Target element not found');
-                return;
-            }
-
-            if (rootElement.classList.contains('eight-bit')) {
-                this.remove(rootElement);
+        toggle: function() {
+            if (document.body.classList.contains('eight-bit')) {
+                this.remove(document.body);
             } else {
-                this.apply(rootElement);
+                this.apply(document.body);
             }
+
+            this.toggleScanlines();
 
             return this;
         },
@@ -457,14 +438,11 @@
          * Toggle scanlines effect on the page
          * @param {boolean} [enable] - Force enable/disable scanlines. If not provided, toggles current state
          */
-        toggleScanlines: function(enable) {
-            const body = document.body;
-            const hasClass = body.classList.contains('eight-bit-scanlines');
-            
+        toggleScanlines: function(enable) {            
             if (typeof enable === 'boolean') {
-                enable && !hasClass ? body.classList.add('eight-bit-scanlines') : body.classList.remove('eight-bit-scanlines');
+                enable ? document.body.classList.add('eight-bit-scanlines') : document.body.classList.remove('eight-bit-scanlines');
             } else {
-                body.classList.toggle('eight-bit-scanlines');
+                document.body.classList.toggle('eight-bit-scanlines');
             }
             
             return this;
@@ -476,42 +454,17 @@
         destroy: function() {
             // Remove all applied styles
             this.remove();
+
+            // Toggle scan lines off
+            this.toggleScanlines(false);
             
             // Remove injected stylesheet
             const style = document.querySelector('style[data-eight-bitify]');
             if (style) {
                 style.remove();
             }
-
-            // Clear element references
-            this.elements = new WeakSet();
             
             return this;
-        },
-
-        /**
-         * Announce a message to screen readers
-         * @private
-         */
-        _announceToScreenReader: function(message) {
-            let announce = document.getElementById('eight-bitify-announce');
-            if (!announce) {
-                announce = document.createElement('div');
-                announce.id = 'eight-bitify-announce';
-                announce.setAttribute('role', 'status');
-                announce.setAttribute('aria-live', 'polite');
-                announce.style.position = 'absolute';
-                announce.style.width = '1px';
-                announce.style.height = '1px';
-                announce.style.padding = '0';
-                announce.style.margin = '-1px';
-                announce.style.overflow = 'hidden';
-                announce.style.clip = 'rect(0, 0, 0, 0)';
-                announce.style.whiteSpace = 'nowrap';
-                announce.style.border = '0';
-                document.body.appendChild(announce);
-            }
-            announce.textContent = message;
         },
 
         /**
