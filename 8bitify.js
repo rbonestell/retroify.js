@@ -24,8 +24,16 @@
             ${features.imageRendering}: -moz-crisp-edges;
             ${features.imageRendering}: crisp-edges;` : ''}
             font-family: 'Press Start 2P', system-ui, -apple-system, sans-serif;
+            font-size: 0.75em;
             --eight-bit-shadow-opacity: 0.3;
         }
+
+        .eight-bit h1 { font-size: 2.5em; }
+        .eight-bit h2 { font-size: 1.25em; }
+        .eight-bit h3 { font-size: 1em; }
+        .eight-bit h4 { font-size: 0.8em; }
+        .eight-bit h5 { font-size: 0.6em; }
+        .eight-bit h6 { font-size: 0.4em; }
 
         .eight-bit img {
             box-shadow: 8px 8px 0 rgb(var(--eight-bit-shadow-color, 0 0 0) / var(--eight-bit-shadow-opacity, 0.3));
@@ -40,6 +48,7 @@
         }
 
         /* Base button styles */
+        .eight-bit a,
         .eight-bit button,
         .eight-bit input[type="button"],
         .eight-bit input[type="submit"],
@@ -50,13 +59,19 @@
             transform: scale(1) !important;
             transition: all 0.1s ease !important;
             border-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
+            border-bottom-right-radius: 0 !important;
+            border-top-left-radius: 0 !important;
+            border-top-right-radius: 0 !important;
             padding: 12px !important;
             border-width: 2px !important;
             border-style: solid !important;
             box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3) !important;
+            font-size: 0.9em !important;
         }
 
         /* Hover states for buttons */
+        .eight-bit a:hover,
         .eight-bit button:hover,
         .eight-bit input[type="button"]:hover,
         .eight-bit input[type="submit"]:hover,
@@ -68,6 +83,7 @@
         }
 
         /* Active states for buttons */
+        .eight-bit a:active,
         .eight-bit button:active,
         .eight-bit input[type="button"]:active,
         .eight-bit input[type="submit"]:active,
