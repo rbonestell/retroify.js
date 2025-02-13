@@ -13,19 +13,28 @@
             if ('webkitImageRendering' in test) return 'webkitImageRendering';
             if ('mozImageRendering' in test) return 'mozImageRendering';
             if ('msImageRendering' in test) return 'msImageRendering';
-            return null;
+            return 'imageRendering';
         })()
     };
 
     const STYLES = `
         .eight-bit {
-            ${features.imageRendering ? `
             ${features.imageRendering}: pixelated;
             ${features.imageRendering}: -moz-crisp-edges;
-            ${features.imageRendering}: crisp-edges;` : ''}
-            font-family: 'Press Start 2P', system-ui, -apple-system, sans-serif;
+            ${features.imageRendering}: crisp-edges;
+            font-family: 'Press Start 2P' !important;
             font-size: 0.75em;
             --eight-bit-shadow-opacity: 0.3;
+        }
+
+        /* Reset FontAwesome icons to prevent eight-bit styling from affecting them */
+        .eight-bit i.fa,
+        .eight-bit i.fab {
+            font-size: 2em !important;
+            transform: initial !important;
+            text-shadow: initial !important;
+            box-shadow: initial !important;
+            filter: initial !important;
         }
 
         .eight-bit h1 { font-size: 2.5em; }
@@ -37,7 +46,6 @@
 
         .eight-bit img {
             box-shadow: 8px 8px 0 rgb(var(--eight-bit-shadow-color, 0 0 0) / var(--eight-bit-shadow-opacity, 0.3));
-            transform: scale(0.95);
             image-rendering: pixelated;
             filter: contrast(150%) brightness(110%);
             border-radius: 0 !important;
