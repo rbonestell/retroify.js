@@ -1,3 +1,7 @@
-# Except the minified library
+# Minified library
 !out/
 !out/retroify.min.js
+
+# Unminified source
+!src/
+!src/retroify.js

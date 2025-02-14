@@ -32,7 +32,11 @@
     "ui"
   ],
   "private": false,
-  "main": "out/retroify.min.js",
+  "main": "src/retroify.js",
+  "files": [
+    "src/retroify.js",
+    "out/retroify.min.js"
+  ],
   "author": "Bobby Bonestell <rbonestell@gmail.com>",
   "license": "MIT",
   "scripts": {
