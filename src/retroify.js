@@ -268,6 +268,14 @@
         document.head.appendChild(styleSheet);
     }
 
+    // Add Google Font
+    if (!document.querySelector('link[href*="Press+Start+2P"]')) {
+        const fontLink = document.createElement('link');
+        fontLink.href = 'https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap';
+        fontLink.rel = 'stylesheet';
+        document.head.appendChild(fontLink);
+    }
+
     const Retroify = {
         version: '0.1.0',
         isApplied: false,
@@ -298,20 +306,6 @@
         },
 
         /**
-         * Inject required font and styles into the document
-         * @private
-         */
-        _injectDependencies: function() {
-            // Add Google Font
-            if (!document.querySelector('link[href*="Press+Start+2P"]')) {
-                const fontLink = document.createElement('link');
-                fontLink.href = 'https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap';
-                fontLink.rel = 'stylesheet';
-                document.head.appendChild(fontLink);
-            }
-        },
-
-        /**
          * Apply Retro 8-bit styling to the page or specific element
          * @param {HTMLElement|string} [target=document.body] - Optional target element or selector to apply styles to
          * @returns {Retroify}
@@ -321,8 +315,6 @@
             if (!this._init()) return this;
 
             try {
-                this._injectDependencies();
-
                 const rootElement = target 
                     ? (typeof target === 'string' ? document.querySelector(target) : target)
                     : document.body;
