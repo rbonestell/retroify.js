@@ -1,5 +1,5 @@
 /**
- * retroify.js v0.1.0
+ * retroify.js v0.1.1
  * A library to apply retro 8-bit styling to web pages
  * https://github.com/rbonestell/retroify.js
  * 
@@ -277,7 +277,7 @@
     }
 
     const Retroify = {
-        version: '0.1.0',
+        version: '0.1.1',
         isApplied: false,
         
         /**
