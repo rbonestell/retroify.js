@@ -56,6 +56,15 @@
         /* Reset FontAwesome icons */
         [data-retroify="true"] i.fa,
         [data-retroify="true"] i.fab {
+            font-size: 1em;
+            transform: none;
+            text-shadow: none;
+            box-shadow: none;
+            filter: none;
+        }
+
+        [data-retroify="true"] .btn i.fa,
+        [data-retroify="true"] .btn i.fab {
             font-size: 2em;
             transform: none;
             text-shadow: none;
@@ -96,9 +105,24 @@
             filter: contrast(150%) brightness(110%);
             border-radius: 0;
         }
+
+        /* Anchor styles */
+        [data-retroify="true"] a {
+            cursor: pointer;
+            text-shadow: 1px 1px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
+        }
+        [data-retroify="true"] a:hover {
+            cursor: pointer;
+            text-shadow: 2px 2px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
+        }
+        [data-retroify="true"] a:active {
+            top: 5px;
+            left: 5px;
+            cursor: pointer;
+            text-shadow: none;
+        }
         
         /* Button styles */
-        [data-retroify="true"] a,
         [data-retroify="true"] button,
         [data-retroify="true"] input[type="button"],
         [data-retroify="true"] input[type="submit"],
@@ -108,7 +132,7 @@
             left: 0;
             transform: scale(1);
             transition: all 0.1s ease;
-            border-radius: 0;
+            border-radius: 0 !important;
             padding: 12px;
             border-width: 2px;
             border-style: solid;
@@ -117,7 +141,6 @@
         }
         
         /* Hover states for buttons */
-        [data-retroify="true"] a:hover,
         [data-retroify="true"] button:hover,
         [data-retroify="true"] input[type="button"]:hover,
         [data-retroify="true"] input[type="submit"]:hover,
@@ -126,10 +149,10 @@
             left: -2px;
             cursor: pointer;
             box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.3);
+            border-radius: 0 !important;
         }
 
         /* Active states for buttons */
-        [data-retroify="true"] a:active,
         [data-retroify="true"] button:active,
         [data-retroify="true"] input[type="button"]:active,
         [data-retroify="true"] input[type="submit"]:active,
@@ -137,6 +160,7 @@
             top: 4px !important;
             left: 4px !important;
             box-shadow: 0px 0px 0 !important;
+            border-radius: 0 !important;
         }
 
         [data-retroify="true"] p {
