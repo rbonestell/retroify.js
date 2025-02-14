@@ -201,10 +201,10 @@
         .retroify-scanlines::before {
             content: "";
             position: fixed;
-            top: 0;
+            top: -50px;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: calc(100% + 50px);
             background: repeating-linear-gradient(
                 0deg,
                 rgb(var(--retroify-shadow-color, 0 0 0) / 0.03),
