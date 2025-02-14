@@ -40,152 +40,160 @@
     };
 
     const STYLES = `
-        .retroify {
+        /* Add a data attribute for higher specificity without !important */
+        [data-retroify="true"] {
             ${features.imageRendering}: pixelated;
             ${features.imageRendering}: -moz-crisp-edges;
             ${features.imageRendering}: crisp-edges;
-            font-family: 'Press Start 2P' !important;
-            font-size: 0.75em;
+            font-family: 'Press Start 2P';
+            font-size: 0.8em;
             --retroify-shadow-opacity: 0.3;
         }
-
-        /* Reset FontAwesome icons to prevent retroify styling from affecting them */
-        .retroify i.fa,
-        .retroify i.fab {
-            font-size: 2em !important;
-            transform: initial !important;
-            text-shadow: initial !important;
-            box-shadow: initial !important;
-            filter: initial !important;
+        
+        /* Preserve Tailwind's font-size utilities while maintaining retro font */
+        [data-retroify="true"] * { font-family: 'Press Start 2P'; }
+        
+        /* Reset FontAwesome icons */
+        [data-retroify="true"] i.fa,
+        [data-retroify="true"] i.fab {
+            font-size: 2em;
+            transform: none;
+            text-shadow: none;
+            box-shadow: none;
+            filter: none;
         }
-
-        .retroify h1 { font-size: 2.5em; }
-        .retroify h2 { font-size: 1.25em; }
-        .retroify h3 { font-size: 1em; }
-        .retroify h4 { font-size: 0.8em; }
-        .retroify h5 { font-size: 0.6em; }
-        .retroify h6 { font-size: 0.4em; }
-
-        .retroify img {
+        
+        /* Heading styles */
+        [data-retroify="true"] h1 { 
+            font-size: 2.5em;
+            text-shadow: 2px 2px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
+        }
+        [data-retroify="true"] h2 {
+            font-size: 1.25em;
+            text-shadow: 2px 2px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
+        }
+        [data-retroify="true"] h3 {
+            font-size: 1em;
+            text-shadow: 2px 2px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
+        }
+        [data-retroify="true"] h4 {
+            font-size: 0.8em;
+            text-shadow: 1px 1px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
+        }
+        [data-retroify="true"] h5 {
+            font-size: 0.6em;
+            text-shadow: 1px 1px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
+        }
+        [data-retroify="true"] h6 {
+            font-size: 0.4em;
+            text-shadow: 1px 1px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
+        }
+        
+        /* Image styles */
+        [data-retroify="true"] img {
             box-shadow: 8px 8px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
             image-rendering: pixelated;
             filter: contrast(150%) brightness(110%);
-            border-radius: 0 !important;
-            border-bottom-left-radius: 0 !important;
-            border-bottom-right-radius: 0 !important;
-            border-top-left-radius: 0 !important;
-            border-top-right-radius: 0 !important;
+            border-radius: 0;
         }
-
-        /* Base button styles */
-        .retroify a,
-        .retroify button,
-        .retroify input[type="button"],
-        .retroify input[type="submit"],
-        .retroify .btn {
-            position: relative !important;
-            top: 0 !important;
-            left: 0 !important;
-            transform: scale(1) !important;
-            transition: all 0.1s ease !important;
-            border-radius: 0 !important;
-            border-bottom-left-radius: 0 !important;
-            border-bottom-right-radius: 0 !important;
-            border-top-left-radius: 0 !important;
-            border-top-right-radius: 0 !important;
-            padding: 12px !important;
-            border-width: 2px !important;
-            border-style: solid !important;
-            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3) !important;
-            font-size: 0.9em !important;
+        
+        /* Button styles */
+        [data-retroify="true"] a,
+        [data-retroify="true"] button,
+        [data-retroify="true"] input[type="button"],
+        [data-retroify="true"] input[type="submit"],
+        [data-retroify="true"] .btn {
+            position: relative;
+            top: 0;
+            left: 0;
+            transform: scale(1);
+            transition: all 0.1s ease;
+            border-radius: 0;
+            padding: 12px;
+            border-width: 2px;
+            border-style: solid;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+            font-size: 0.9em;
         }
-
+        
         /* Hover states for buttons */
-        .retroify a:hover,
-        .retroify button:hover,
-        .retroify input[type="button"]:hover,
-        .retroify input[type="submit"]:hover,
-        .retroify .btn:hover {
-            top: -2px !important;
-            left: -2px !important;
-            cursor: pointer !important;
-            box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.3) !important;
+        [data-retroify="true"] a:hover,
+        [data-retroify="true"] button:hover,
+        [data-retroify="true"] input[type="button"]:hover,
+        [data-retroify="true"] input[type="submit"]:hover,
+        [data-retroify="true"] .btn:hover {
+            top: -2px;
+            left: -2px;
+            cursor: pointer;
+            box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.3);
         }
 
         /* Active states for buttons */
-        .retroify a:active,
-        .retroify button:active,
-        .retroify input[type="button"]:active,
-        .retroify input[type="submit"]:active,
-        .retroify .btn:active {
+        [data-retroify="true"] a:active,
+        [data-retroify="true"] button:active,
+        [data-retroify="true"] input[type="button"]:active,
+        [data-retroify="true"] input[type="submit"]:active,
+        [data-retroify="true"] .btn:active {
             top: 4px !important;
             left: 4px !important;
             box-shadow: 0px 0px 0 !important;
         }
 
-        .retroify h1,
-        .retroify h2,
-        .retroify h3 {
-            text-shadow: 2px 2px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
-        }
-
-        .retroify h4,
-        .retroify h5,
-        .retroify h6 {
-            text-shadow: 1px 1px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
-        }
-
-        .retroify p {
+        [data-retroify="true"] p {
             line-height: 1.6;
             margin-bottom: 1.5em;
         }
 
-        .retroify input[type="text"],
-        .retroify input[type="email"],
-        .retroify input[type="password"],
-        .retroify textarea {
+        [data-retroify="true"] input[type="text"],
+        [data-retroify="true"] input[type="email"],
+        [data-retroify="true"] input[type="password"],
+        [data-retroify="true"] textarea {
             border: 2px solid currentColor !important;
             border-radius: 0 !important;
             box-shadow: 4px 4px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
             padding: 8px !important;
         }
 
-        .retroify select {
+        [data-retroify="true"] select {
             border: 2px solid currentColor !important;
             border-radius: 0 !important;
             box-shadow: 4px 4px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
             padding: 8px !important;
         }
 
-        .retroify .card,
-        .retroify .alert,
-        .retroify .modal-content {
+        [data-retroify="true"] .card,
+        [data-retroify="true"] .alert,
+        [data-retroify="true"] .modal-content {
             border-radius: 0 !important;
             box-shadow: 8px 8px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
             border: 2px solid currentColor !important;
         }
 
-        .retroify hr {
+        [data-retroify="true"] hr {
             border: none;
             border-bottom: 4px dashed currentColor;
             margin: 2em 0;
         }
 
-        .retroify table {
+        [data-retroify="true"] table {
             border-collapse: separate;
             border-spacing: 0;
             border: 2px solid currentColor;
             box-shadow: 4px 4px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
         }
 
-        .retroify th ,
-        .retroify td {
+        [data-retroify="true"] th {
+            border: 1px solid currentColor;
+            padding: 8px;
+            text-shadow: 1px 1px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
+        }
+        [data-retroify="true"] td {
             border: 1px solid currentColor;
             padding: 8px;
         }
 
-        .retroify code,
-        .retroify pre {
+        [data-retroify="true"] code,
+        [data-retroify="true"] pre {
             font-family: 'Press Start 2P', monospace;
             font-size: 0.8em;
         }
@@ -220,11 +228,11 @@
             100% { transform: translateY(0); }
         }
 
-        .retroify .floating {
+        [data-retroify="true"] .floating {
             animation: retroify-float 2s ease-in-out infinite;
         }
 
-        .retroify .blink {
+        [data-retroify="true"] .blink {
             animation: retroify-blink 1s step-end infinite;
         }
 
@@ -234,12 +242,12 @@
 
         /* Reduced Motion */
         @media (prefers-reduced-motion: reduce) {
-            .retroify .floating {
+            [data-retroify="true"] .floating {
                 animation: none !important;
             }
             
-            .retroify button,
-            .retroify .btn {
+            [data-retroify="true"] button,
+            [data-retroify="true"] .btn {
                 transition: none !important;
             }
         }
@@ -251,6 +259,14 @@
             }
         }
     `;
+
+    // Add styles
+    if (!document.querySelector('style[data-retroify]')) {
+        const styleSheet = document.createElement('style');
+        styleSheet.setAttribute('data-retroify', '');
+        styleSheet.textContent = STYLES;
+        document.head.appendChild(styleSheet);
+    }
 
     const Retroify = {
         version: '0.1.0',
@@ -293,14 +309,6 @@
                 fontLink.rel = 'stylesheet';
                 document.head.appendChild(fontLink);
             }
-
-            // Add styles
-            if (!document.querySelector('style[data-retroify]')) {
-                const styleSheet = document.createElement('style');
-                styleSheet.setAttribute('data-retroify', '');
-                styleSheet.textContent = STYLES;
-                document.head.appendChild(styleSheet);
-            }
         },
 
         /**
@@ -334,7 +342,7 @@
                         fontFamily: rootElement.style.fontFamily
                     };
                 }
-
+                
                 // Add retroify class to appropriate elements
                 const selectors = [
                     'img',
@@ -364,29 +372,25 @@
                     'blockquote'
                 ];
 
-                try {
-                    const elements = [
-                        rootElement,
-                        ...rootElement.querySelectorAll(selectors.join(','))
-                    ];
+                // Use data attribute instead of class for better specificity
+                rootElement.setAttribute('data-retroify', 'true');
 
-                    elements.forEach(element => {
-                        if (element && element instanceof HTMLElement) {
-                            element.classList.add('retroify');
-                            // Add ARIA attributes
-                            if (element.tagName.toLowerCase() === 'button') {
-                                element.setAttribute('aria-pressed', 'false');
-                            }
-                        }
-                    });
-                    
-                    // Dispatch custom event
-                    window.dispatchEvent(new CustomEvent('retroify:applied', {
-                        detail: { target: rootElement }
-                    }));
-                } catch (e) {
-                    console.error('Retroify: Error applying styles:', e);
-                }
+                // Add ARIA attributes where needed
+                rootElement.querySelectorAll(selectors).forEach(element => {
+
+                    // Use data attribute instead of class for better specificity
+                    element.setAttribute('data-retroify', 'true');
+
+                    // Add ARIA attributes
+                    if (element.tagName.toLowerCase() === 'button') {
+                        element.setAttribute('aria-pressed', 'false');
+                    }
+                });
+                
+                // Dispatch custom event
+                window.dispatchEvent(new CustomEvent('retroify:applied', {
+                    detail: { target: rootElement }
+                }));
 
                 return this;
             } catch (e) {
@@ -418,10 +422,12 @@
                     delete rootElement._originalStyles;
                 }
 
-                rootElement.classList.remove('retroify');
+                // Remove data attribute
+                rootElement.removeAttribute('data-retroify');
                 
-                rootElement.querySelectorAll('.retroify').forEach(element => {
-                    element.classList.remove('retroify');
+                // Remove data attributes from child elements
+                rootElement.querySelectorAll('[data-retroify]').forEach(element => {
+                    element.removeAttribute('data-retroify');
                     if (element._originalStyles) {
                         Object.assign(element.style, element._originalStyles);
                         delete element._originalStyles;
@@ -444,13 +450,13 @@
          * Toggle 8-bit styling on the entire page
          */
         toggle: function() {
-            if (document.body.classList.contains('retroify')) {
+            if (document.body.hasAttribute('data-retroify')) {
+                this.toggleScanlines(false);
                 this.remove(document.body);
             } else {
+                this.toggleScanlines(true);
                 this.apply(document.body);
             }
-
-            this.toggleScanlines();
 
             return this;
         },

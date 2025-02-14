@@ -1,6 +1,6 @@
 # Retroify.js   ![NPM Version](https://img.shields.io/npm/v/retroify.js) ![License](https://img.shields.io/github/license/rbonestell/retroify.js)
 
-Add instant retro 8-bit styling to any website with a single line of JavaScript. Retroify.js transforms your modern web elements into a nostalgic, pixel-perfect interface inspired by classic video games.
+Add instant retro 8-bit styling to any website with a single line of JavaScript. Retroify.js transforms your modern web elements into a nostalgic, pixelelated interface inspired by classic video games.
 
 ## Features
 
