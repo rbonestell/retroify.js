@@ -51,7 +51,7 @@
         }
         
         /* Preserve Tailwind's font-size utilities while maintaining retro font */
-        [data-retroify="true"] * { font-family: 'Press Start 2P'; }
+        [data-retroify="true"] *:not(i[class*="fa"],i[class*="fa"]) {  font-family: 'Press Start 2P'; }
         
         /* Reset FontAwesome icons */
         [data-retroify="true"] i.fa,

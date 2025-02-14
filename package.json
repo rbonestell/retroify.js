@@ -1,6 +1,6 @@
 {
   "name": "retroify.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A library to apply retro 8-bit styling to web pages",
   "repository": {
     "type": "git",
