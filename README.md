@@ -19,7 +19,7 @@ Add instant retro 8-bit styling to any website with a single line of JavaScript.
 
 ### CDN (Recommended)
 ```html
-<script src="https://cdn.jsdelivr.net/npm/retroify.js@0.1.0/retroify.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/retroify.js/out/retroify.min.js"></script>
 ```
 
 ### NPM
