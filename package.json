@@ -39,11 +39,22 @@
   ],
   "author": "Bobby Bonestell <rbonestell@gmail.com>",
   "license": "MIT",
+  "type": "module",
   "scripts": {
-    "minify": "mkdirp out && uglifyjs src/retroify.js --compress --warn --comments --output out/retroify.min.js"
+    "minify": "mkdirp out && uglifyjs src/retroify.js --compress --warn --comments --output out/retroify.min.js",
+    "test": "jest"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    }
   },
   "devDependencies": {
+    "jest": "^29.7.0",
     "mkdirp": "^3.0.1",
-    "uglify-js": "^3.19.3"
+    "uglify-js": "^3.19.3",
+    "@babel/preset-env": "^7.0.0",
+    "jest-environment-jsdom": "^29.0.0"
   }
 }
