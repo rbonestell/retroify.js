@@ -1,5 +1,5 @@
 /**
- * retroify.js v0.2.0
+ * retroify.js v0.2.1
  * A library to apply retro 8-bit styling to web pages
  * https://github.com/rbonestell/retroify.js
  * 
@@ -308,7 +308,7 @@
     }
 
     const Retroify = {
-        version: '0.2.0',
+        version: '0.2.1',
         
         /**
          * Check if the environment supports Retroify
@@ -357,8 +357,6 @@
                     element.setAttribute('aria-pressed', 'false');
                 }
 
-                element.setAttribute('data-retroify-root', 'true');
-
                 // Skip applying retroify to blacklist element tags
                 const selector = `*:not(${BLACKLISTED_TAGS.join(', ')})`;
 
@@ -397,6 +395,8 @@
                 if (!(rootElement instanceof HTMLElement)) {
                     throw new Error('Invalid target type. Expected HTMLElement or string selector');
                 }
+
+                rootElement.setAttribute('data-retroify-root', 'true');
 
                 // Apply retroify to the target element
                 applyToTargetElement(rootElement);
