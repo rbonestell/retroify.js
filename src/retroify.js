@@ -39,71 +39,86 @@
         })()
     };
 
+    // Add retroify class to appropriate elements
+    const BLACKLISTED_TAGS = [
+        'abbr',
+        'acronym',
+        'b',
+        'bdo',
+        'big',
+        'br',
+        'cite',
+        'dfn',
+        'em',
+        'kbd',
+        'label',
+        'map',
+        'object',
+        'output',
+        'q',
+        'script',
+        'small',
+        'strong',
+        'sub',
+        'sup',
+        'time',
+        'var'
+    ];
+
     const STYLES = `
-        /* Add a data attribute for higher specificity without !important */
-        [data-retroify="true"] {
-            ${features.imageRendering}: pixelated;
-            ${features.imageRendering}: -moz-crisp-edges;
-            ${features.imageRendering}: crisp-edges;
-            font-family: 'Press Start 2P';
-            font-size: 0.8em;
+        /* Basic root element styles */
+        [data-retroify-root="true"],
+        [data-retroify="true"] code,
+        [data-retroify="true"] pre,
+        [data-retroify="true"] samp {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.75em;
             --retroify-shadow-opacity: 0.3;
         }
-        
-        /* Preserve Tailwind's font-size utilities while maintaining retro font */
-        [data-retroify="true"] *:not(i[class*="fa"],i[class*="fa"]) {  font-family: 'Press Start 2P'; }
-        
-        /* Reset FontAwesome icons */
-        [data-retroify="true"] i.fa,
-        [data-retroify="true"] i.fab {
-            font-size: 1em;
-            transform: none;
-            text-shadow: none;
-            box-shadow: none;
-            filter: none;
-        }
 
-        [data-retroify="true"] .btn i.fa,
-        [data-retroify="true"] .btn i.fab {
+        /* Modified heading sizes */
+        [data-retroify="true"] h1 {
             font-size: 2em;
-            transform: none;
-            text-shadow: none;
-            box-shadow: none;
-            filter: none;
-        }
-        
-        /* Heading styles */
-        [data-retroify="true"] h1 { 
-            font-size: 2.5em;
             text-shadow: 2px 2px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
         }
         [data-retroify="true"] h2 {
-            font-size: 1.25em;
+            font-size: 1.75em;
             text-shadow: 2px 2px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
         }
         [data-retroify="true"] h3 {
-            font-size: 1em;
+            font-size: 1.5em;
             text-shadow: 2px 2px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
         }
         [data-retroify="true"] h4 {
-            font-size: 0.8em;
+            font-size: 1.25em;
             text-shadow: 1px 1px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
         }
         [data-retroify="true"] h5 {
-            font-size: 0.6em;
+            font-size: 1em;
             text-shadow: 1px 1px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
         }
         [data-retroify="true"] h6 {
-            font-size: 0.4em;
+            font-size: 0.8em;
             text-shadow: 1px 1px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
+        }
+        
+        /* Rest of the styles remain the same */
+        /* Preserve FontAwesome icons */
+        [data-retroify="true"] i.fa,
+        [data-retroify="true"] i.fab,
+        [data-retroify="true"] i.fas {
+            font-size: 2.08em;
         }
         
         /* Image styles */
         [data-retroify="true"] img {
-            box-shadow: 8px 8px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
+            box-shadow: 6px 6px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
             image-rendering: pixelated;
             filter: contrast(150%) brightness(110%);
             border-radius: 0;
+            ${features.imageRendering}: pixelated;
+            ${features.imageRendering}: -moz-crisp-edges;
+            ${features.imageRendering}: crisp-edges;
         }
 
         /* Anchor styles */
@@ -130,6 +145,8 @@
             position: relative;
             top: 0;
             left: 0;
+            margin-right: 3px;
+            margin-bottom: 3px;
             transform: scale(1);
             transition: all 0.1s ease;
             border-radius: 0 !important;
@@ -137,7 +154,7 @@
             border-width: 2px;
             border-style: solid;
             box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
-            font-size: 0.9em;
+            font-size: 0.8em;
         }
         
         /* Hover states for buttons */
@@ -163,33 +180,29 @@
             border-radius: 0 !important;
         }
 
-        [data-retroify="true"] p {
-            line-height: 1.6;
-            margin-bottom: 1.5em;
-        }
-
-        [data-retroify="true"] input[type="text"],
-        [data-retroify="true"] input[type="email"],
-        [data-retroify="true"] input[type="password"],
+        [data-retroify="true"] .input-group-text,
+        [data-retroify="true"] input:not([type="button"]):not([type="submit"]),
         [data-retroify="true"] textarea {
             border: 2px solid currentColor !important;
             border-radius: 0 !important;
             box-shadow: 4px 4px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
-            padding: 8px !important;
+            padding: 6px !important;
+            font-size: 0.9em;
         }
 
         [data-retroify="true"] select {
             border: 2px solid currentColor !important;
             border-radius: 0 !important;
             box-shadow: 4px 4px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
-            padding: 8px !important;
+            padding: 6px !important;
+            font-size: 0.9em;
         }
 
         [data-retroify="true"] .card,
         [data-retroify="true"] .alert,
         [data-retroify="true"] .modal-content {
             border-radius: 0 !important;
-            box-shadow: 8px 8px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3));
+            box-shadow: 4px 4px 0 rgb(var(--retroify-shadow-color, 0 0 0) / var(--retroify-shadow-opacity, 0.3)) !important;
             border: 2px solid currentColor !important;
         }
 
@@ -214,12 +227,6 @@
         [data-retroify="true"] td {
             border: 1px solid currentColor;
             padding: 8px;
-        }
-
-        [data-retroify="true"] code,
-        [data-retroify="true"] pre {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.8em;
         }
 
         .retroify-scanlines::before {
@@ -302,7 +309,6 @@
 
     const Retroify = {
         version: '0.1.2',
-        isApplied: false,
         
         /**
          * Check if the environment supports Retroify
@@ -338,10 +344,51 @@
         apply: function(target) {
             if (!this._init()) return this;
 
+            const applyToTargetElement = (element) => {
+                if (!element._originalStyle) {
+                    element._originalStyle = element.style;
+                }
+
+                // Use data attribute instead for specificity
+                element.setAttribute('data-retroify', 'true');
+
+                // Add ARIA pressed attribute to buttons
+                if (element.tagName.toLowerCase() === 'button') {
+                    element.setAttribute('aria-pressed', 'false');
+                }
+
+                element.setAttribute('data-retroify-root', 'true');
+
+                // Skip applying retroify to blacklist element tags
+                const selector = `*:not(${BLACKLISTED_TAGS.join(', ')})`;
+
+                // Apply retroify to child elements
+                for (const child of element.querySelectorAll(selector)) {
+                    // Use data attribute instead for specificity
+                    child.setAttribute('data-retroify', 'true');
+
+                    // Add ARIA pressed attribute to buttons
+                    if (child.tagName.toLowerCase() === 'button') {
+                        child.setAttribute('aria-pressed', 'false');
+                    }
+                }
+
+            };
+
             try {
-                const rootElement = target 
-                    ? (typeof target === 'string' ? document.querySelector(target) : target)
-                    : document.body;
+                let rootElement;
+
+                if (target) {
+                    rootElement = typeof target === 'string' ? document.querySelector(target) : target;
+                    if (rootElement == document.body) {
+                        // If root element is the body, apply scanlines
+                        this.toggleScanlines(true);
+                    }
+                } else {
+                    // Default to body if no target is provided
+                    rootElement = document.body;
+                    this.toggleScanlines(true);
+                }
 
                 if (!rootElement) {
                     throw new Error('Target element not found');
@@ -351,57 +398,34 @@
                     throw new Error('Invalid target type. Expected HTMLElement or string selector');
                 }
 
-                // Store original styles for proper cleanup
-                if (!rootElement._originalStyles) {
-                    rootElement._originalStyles = {
-                        borderRadius: rootElement.style.borderRadius,
-                        fontFamily: rootElement.style.fontFamily
+                // Apply retroify to the target element
+                applyToTargetElement(rootElement);
+
+                // Create MutationObserver to watch for new elements
+                const observer = new MutationObserver((mutations) => {
+                    for (const mutation of mutations) {
+                        if (mutation.type === 'childList') {
+                            for (const node of mutation.addedNodes) {
+                                if (node.nodeType === Node.ELEMENT_NODE) {
+                                    // Check if the parent has data-retroify="true"
+                                    if (node.parentElement && node.parentElement.getAttribute('data-retroify') === 'true') {
+                                        // Apply retroify to the new element if it matches our selectors
+                                        applyToTargetElement(node);
+                                    }
+                                }
+                            };
+                        }
                     };
-                }
-                
-                // Add retroify class to appropriate elements
-                const selectors = [
-                    'img',
-                    'button',
-                    'input[type="button"]',
-                    'input[type="submit"]',
-                    '.btn',
-                    'h1, h2, h3, h4, h5, h6',
-                    'p',
-                    'input[type="text"]',
-                    'input[type="email"]',
-                    'input[type="password"]',
-                    'textarea',
-                    'select',
-                    '.card',
-                    '.alert',
-                    '.modal-content',
-                    'hr',
-                    'table',
-                    'th',
-                    'td',
-                    'code',
-                    'pre',
-                    'ul',
-                    'ol',
-                    'li',
-                    'blockquote'
-                ];
-
-                // Use data attribute instead of class for better specificity
-                rootElement.setAttribute('data-retroify', 'true');
-
-                // Add ARIA attributes where needed
-                rootElement.querySelectorAll(selectors).forEach(element => {
-
-                    // Use data attribute instead of class for better specificity
-                    element.setAttribute('data-retroify', 'true');
-
-                    // Add ARIA attributes
-                    if (element.tagName.toLowerCase() === 'button') {
-                        element.setAttribute('aria-pressed', 'false');
-                    }
                 });
+
+                // Start observing with the configured options
+                observer.observe(rootElement, {
+                    childList: true,
+                    subtree: true
+                });
+
+                // Store the observer instance for cleanup
+                rootElement._retroifyObserver = observer;
                 
                 // Dispatch custom event
                 window.dispatchEvent(new CustomEvent('retroify:applied', {
@@ -432,21 +456,28 @@
                     throw new Error('Target element not found');
                 }
 
+                // Disconnect the MutationObserver if it exists
+                if (rootElement._retroifyObserver) {
+                    rootElement._retroifyObserver.disconnect();
+                    delete rootElement._retroifyObserver;
+                }
+
                 // Restore original styles if they exist
-                if (rootElement._originalStyles) {
-                    Object.assign(rootElement.style, rootElement._originalStyles);
-                    delete rootElement._originalStyles;
+                if (rootElement._originalStyle) {
+                    Object.assign(rootElement.style, rootElement._originalStyle);
+                    delete rootElement._originalStyle;
                 }
 
                 // Remove data attribute
                 rootElement.removeAttribute('data-retroify');
+                rootElement.removeAttribute('data-retroify-root');
                 
                 // Remove data attributes from child elements
                 rootElement.querySelectorAll('[data-retroify]').forEach(element => {
                     element.removeAttribute('data-retroify');
-                    if (element._originalStyles) {
-                        Object.assign(element.style, element._originalStyles);
-                        delete element._originalStyles;
+                    if (element._originalStyle) {
+                        Object.assign(element.style, element._originalStyle);
+                        delete element._originalStyle;
                     }
                 });
 

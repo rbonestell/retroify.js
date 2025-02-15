@@ -10,7 +10,7 @@
     <style>
         .container { padding: 2rem; }
         .demo-section { margin: 2rem 0; padding: 1rem; border: 1px solid #ddd; }
-        .btn.github { background: #333333; color: #ffffff; }
+        .btn.github { background: #333333; color: #ffffff; white-space: nowrap; }
         .btn.github:hover { background: #222222; color: #ffffff; }
         .btn.github:active { background: #111111; color: #ffffff; }
     </style>
@@ -18,10 +18,15 @@
 <body>
     <div class="container">
         <div style="display: flex; justify-content: space-between; align-items: center">
-            <h1>Retroify.js Demo</h1>
-            <span><a href="https://github.com/rbonestell/retroify.js" class="btn github">View on GitHub <i class="fab fa-github"></i></a></span>
+            <div>
+                <h1>Retroify.js Demo</h1>
+                <p>This demo shows how Retroify.js works with various HTML elements and Bootstrap components.</p>
+            </div>
+            <div>
+                <a href="https://github.com/rbonestell/retroify.js" class="btn github">View on GitHub <i class="fab fa-github"></i></a>
+            </div>
         </div>
-        <p>This demo shows how Retroify.js works with various HTML elements and Bootstrap components.</p>
+        
         <button onclick="retroify.toggle()" class="btn btn-primary" aria-pressed="false">Toggle Retroification</button>
         <button onclick="retroify.toggleScanlines()" class="btn btn-secondary" aria-pressed="false">Toggle Scanlines</button>
         
@@ -61,12 +66,24 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Card Title</h5>
+                            <h4 class="card-title">Card Title</h4>
                             <p class="card-text">Some quick example text for the card.</p>
                             <button class="btn btn-primary">Go somewhere</button>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>Dynamic Controls</h2>
+            <p>This section demonstrates how Retroify.js handles dynamically added and removed elements.</p>
+            <div class="mb-3">
+                <button class="btn btn-success" onclick="addElement()">Add Element</button>
+                <button class="btn btn-danger" onclick="removeElement()">Remove Last Element</button>
+            </div>
+            <div id="dynamic-elements" class="mt-3">
+                <!-- Dynamic elements will be added here -->
             </div>
         </div>
 
@@ -115,6 +132,47 @@
             </p>
             <p>Try hovering over these links to see the 8-bit hover effect!</p>
         </div>
+
+        <div class="demo-section">
+            <h2>Font Awesome Icons</h2>
+            <p>This section demonstrates how Retroify.js works with Font Awesome icons in various contexts.</p>
+            
+            <div class="mb-3">
+                <button class="btn btn-primary">
+                    <i class="fas fa-save"></i> Save Changes
+                </button>
+                <button class="btn btn-danger">
+                    <i class="fas fa-trash"></i> Delete Item
+                </button>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">
+                    <i class="fas fa-user"></i> Username
+                </label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="fas fa-at"></i>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Enter username">
+                </div>
+            </div>
+
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i>
+                This is an informational message with an icon
+            </div>
+
+            <div class="mb-3">
+                <span class="badge bg-success">
+                    <i class="fas fa-check"></i> Complete
+                </span>
+                <span class="badge bg-warning text-dark">
+                    <i class="fas fa-clock"></i> Pending
+                </span>
+            </div>
+        </div>
+
     </div>
     <script>
         // Event listeners
@@ -124,6 +182,34 @@
                 console.log(`Retroify.js ${event} to:`, e.detail.target);
             });
         });
+
+        // Dynamic element handlers
+        let elementCounter = 0;
+        
+        function addElement() {
+            const container = document.getElementById('dynamic-elements');
+            const element = document.createElement('div');
+            element.className = 'mb-2';
+            elementCounter++;
+            element.innerHTML = `
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Dynamic Element ${elementCounter}</h4>
+                        <p class="card-text">This element was added dynamically.</p>
+                        <button class="btn btn-primary">Dynamic Button</button>
+                    </div>
+                </div>
+            `;
+            container.appendChild(element);
+        }
+        
+        function removeElement() {
+            const container = document.getElementById('dynamic-elements');
+            if (container.lastChild) {
+                container.removeChild(container.lastChild);
+                elementCounter--;
+            }
+        }
     </script>
 </body>
 </html>
