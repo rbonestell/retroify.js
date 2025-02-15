@@ -1,4 +1,5 @@
-# Retroify.js   ![NPM Version](https://img.shields.io/npm/v/retroify.js) ![License](https://img.shields.io/github/license/rbonestell/retroify.js)
+# Retroify.js   [![NPM Version](https://img.shields.io/npm/v/retroify.js?logo=npm&logoColor=white)](https://www.npmjs.com/package/retroify.js) [![License](https://img.shields.io/github/license/rbonestell/retroify.js)](https://github.com/rbonestell/retroify.js/blob/main/LICENSE) [![GitHub Copilot](https://img.shields.io/badge/GitHub-Copilot-000?logo=githubcopilot&logoSize=auto)](#)
+
 
 Add instant retro 8-bit styling to any website with a single line of JavaScript. Retroify.js transforms your modern web elements into a nostalgic, pixelelated interface inspired by classic video games.
 
