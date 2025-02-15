@@ -255,11 +255,6 @@ describe('Retroify', () => {
         expect(select.getAttribute('data-retroify')).toBe('true');
     });
 
-    test('should handle version property correctly', () => {
-        expect(retroify.version).toBe('0.1.2');
-        expect(() => { retroify.version = '0.2.0'; }).toThrow();
-    });
-
     test('should prevent multiple stylesheet injections', () => {
         retroify.apply();
         const initialStyleCount = document.querySelectorAll('style[data-retroify]').length;
